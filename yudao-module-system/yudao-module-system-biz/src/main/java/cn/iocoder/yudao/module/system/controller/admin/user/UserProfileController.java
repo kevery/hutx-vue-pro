@@ -19,8 +19,8 @@ import cn.iocoder.yudao.module.system.service.permission.PermissionService;
 import cn.iocoder.yudao.module.system.service.permission.RoleService;
 import cn.iocoder.yudao.module.system.service.social.SocialUserService;
 import cn.iocoder.yudao.module.system.service.user.AdminUserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -105,4 +105,13 @@ public class UserProfileController {
         return success(avatar);
     }
 
+    @RequestMapping(value = "/update-avatar11", method = {RequestMethod.POST, RequestMethod.PUT}) // 解决 uni-app 不支持 Put 上传文件的问题
+    @Operation(summary = "上传用户个人头像111")
+    public CommonResult<String> updateUserAvatar111(@RequestParam("avatarFile") MultipartFile file) throws Exception {
+        if (file.isEmpty()) {
+            throw exception(FILE_IS_EMPTY);
+        }
+        String avatar = userService.updateUserAvatar(getLoginUserId(), file.getInputStream());
+        return success(avatar);
+    }
 }
