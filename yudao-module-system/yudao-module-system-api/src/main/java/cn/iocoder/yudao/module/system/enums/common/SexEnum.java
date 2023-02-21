@@ -14,6 +14,7 @@ public enum SexEnum {
 
     /** 男 */
     MALE(1),
+
     /** 女 */
     FEMALE(2),
     /* 未知 */
