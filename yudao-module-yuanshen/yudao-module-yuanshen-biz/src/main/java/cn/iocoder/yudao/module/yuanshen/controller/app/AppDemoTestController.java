@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
 
 
@@ -21,13 +23,12 @@ import static cn.iocoder.yudao.framework.common.pojo.CommonResult.success;
 @Slf4j
 public class AppDemoTestController {
 
+    @Resource
     YuanService yuanService;
 
     @GetMapping("/get")
     @Operation(summary = "创建错误码")
     public CommonResult<String> get() {
-
-
         String qiandao = yuanService.qiandao("111");
         return success(qiandao);
 
